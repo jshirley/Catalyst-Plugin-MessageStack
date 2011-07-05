@@ -33,24 +33,24 @@ To define the default type of message set the 'default_type' configuration key.
 
 Use is very simple:
 
- $c->message('This is a message of the default type');
- $c->message({ type => 'error', message => 'This is an error message' });
+    $c->message('This is a message of the default type');
+    $c->message({ type => 'error', message => 'This is an error message' });
 
 
 Configuring is relatively straight forward, here are the defaults:
 
- package MyApp;
+    package MyApp;
 
- use Catalyst qw/MessageStack/;
+    use Catalyst qw/MessageStack/;
 
- __PACKAGE__->config({
-     'Plugin::MessageStack' => {
-         stash_key    => 'messages',
-         flash_key    => '_message',
-         default_type => 'warning',
-         model        => 'DataManager', # optional, but will merge messages
-     }
- });
+    __PACKAGE__->config({
+        'Plugin::MessageStack' => {
+            stash_key    => 'messages',
+            flash_key    => '_message',
+            default_type => 'warning',
+            model        => 'DataManager', # optional, but will merge messages
+        }
+    });
 
 =head1 INTEGRATION WITH DATA::MANAGER
 
@@ -113,21 +113,21 @@ Add a new message to the stack.  The message can be a simple scalar value, which
 is created as an informational type.  Alternatively, if you want a different
 type attriute, simply call C<< $c->message >> in this form:
 
- $c->message({
-     type    => 'error', # Corresponds to a message stack 'level'
-     message => 'Your message string here'
- });
+    $c->message({
+        type    => 'error', # Corresponds to a message stack 'level'
+        message => 'Your message string here'
+    });
 
 Called without any arguments, it simply returns the current message stack.
 
 You can also pass in a L<Message::Stack::Message>
 
- $c->message(
-    Message::Stack::Message->new(
-        scope => 'some_scope', level => 'info',
-        msgid => 'some msg id'
-    )
- );
+    $c->message(
+        Message::Stack::Message->new(
+            scope => 'some_scope', level => 'info',
+            msgid => 'some msg id'
+        )
+    );
 
 
 =cut
@@ -230,11 +230,5 @@ sub dispatch {
     }
     return $ret;
 }
-
-=head1 AUTHOR
-
-J. Shirley C<< <j@shirley.im> >>
-
-=cut
 
 1;
