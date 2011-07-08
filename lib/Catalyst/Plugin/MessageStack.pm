@@ -155,6 +155,7 @@ sub message {
             $s->{level}   = $message->{type} || $default;
             $s->{id}      = $message->{message};
             $s->{scope}   = $message->{scope} || 'global';
+            $s->{subject} = $message->{subject};
         } else {
             $s->{level}   = $default;
             $s->{id}      = $message;
