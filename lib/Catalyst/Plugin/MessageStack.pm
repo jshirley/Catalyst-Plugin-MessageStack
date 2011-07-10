@@ -188,6 +188,24 @@ sub has_messages {
     return $stack->has_messages;
 }
 
+sub reset_messages {
+    my ( $c, $scope ) = @_;
+
+    my $stash_key = $c->config->{'Plugin::Message'}->{stash_key} || 'messages';
+    my $stack = $c->stash->{$stash_key};
+    return 0 unless defined $stack;
+
+    my $count = $stack->count;
+    if ( $scope ) {
+        $count = $stack->for_scope($scope)->count;
+        $stack->reset_scope($scope);
+    } else {
+        $stack->reset;
+    }
+    return $count;
+
+}
+
 sub dispatch {
     my $c   = shift;
 
