@@ -134,7 +134,7 @@ You can also pass in a L<Message::Stack::Message>
 
 sub message {
     my ( $c, $message ) = @_;
-    my $config = $c->config->{'Plugin::Message'};
+    my $config = $c->config->{'Plugin::MessageStack'};
     my $default   = $config->{default_type} || 'success';
     my $stash_key = $config->{stash_key} || 'messages';
 
@@ -178,7 +178,7 @@ to limit by scope, pass in the scope and it checks that.
 sub has_messages {
     my ( $c, $scope ) = @_;
 
-    my $stash_key = $c->config->{'Plugin::Message'}->{stash_key} || 'messages';
+    my $stash_key = $c->config->{'Plugin::MessageStack'}->{stash_key} || 'messages';
     my $stack = $c->stash->{$stash_key};
     return 0 unless defined $stack;
 
@@ -191,7 +191,7 @@ sub has_messages {
 sub reset_messages {
     my ( $c, $scope ) = @_;
 
-    my $stash_key = $c->config->{'Plugin::Message'}->{stash_key} || 'messages';
+    my $stash_key = $c->config->{'Plugin::MessageStack'}->{stash_key} || 'messages';
     my $stack = $c->stash->{$stash_key};
     return 0 unless defined $stack;
 
@@ -209,7 +209,7 @@ sub reset_messages {
 sub dispatch {
     my $c   = shift;
 
-    my $config = $c->config->{'Plugin::Message'};
+    my $config = $c->config->{'Plugin::MessageStack'};
     my $stash_key  = $config->{stash_key} || 'messages';
     my $flash_key  = $config->{flash_key} || '_messages';
     my $rflash_key = $config->{results_flash_key} || '_results';
