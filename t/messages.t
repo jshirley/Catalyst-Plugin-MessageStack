@@ -5,7 +5,7 @@ use strict;
 use FindBin qw($Bin);
 use lib "$Bin/lib";
 
-use Test::More tests => 25;
+use Test::More tests => 26;
 use Catalyst::Test 'TestApp';
 use Message::Stack;
 use Message::Stack::Message;
@@ -230,5 +230,6 @@ is_deeply($c->message({ message => 'And one without the default level', type => 
 }, "Message::Stack"), 'Adding message with a Message::Stack obtained from the model and non-default values');
 
 is($c->has_messages, 2, "New model has two message");
+is($c->reset_messages, 2, "Clear out messages with a custom stash_key");
 
 done_testing;
