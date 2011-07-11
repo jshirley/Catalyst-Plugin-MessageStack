@@ -2,6 +2,8 @@ package TestApp::Controller::Root;
 
 use base 'Catalyst::Controller';
 
+use Data::Dump qw(pp);
+
 __PACKAGE__->config( namespace => '' );
 
 sub index : Path('') {
@@ -53,6 +55,20 @@ sub read : Local {
         $body = 'no messages';
     }
     $c->res->body($body);
+}
+
+sub tweak_config : Local {
+    my $self = shift;
+    my $c = shift;
+    if($c->req->method eq 'POST') {
+        my $params = $c->req->params;
+        my $key = $params->{key};
+        my $value = $params->{value};
+        $c->config->{'Plugin::MessageStack'}->{$key} = $value;
+        $c->res->body(pp($c->config->{'Plugin::MessageStack'}));
+    } else {
+        $c->res->body('did not tweak anything');
+    }
 }
 
 1;
