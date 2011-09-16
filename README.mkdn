@@ -4,7 +4,7 @@ Catalyst::Plugin::MessageStack - A Catalyst plugin for gracefully handling messa
 
 # VERSION
 
-version 0.01
+version 0.02
 
 # DESCRIPTION
 

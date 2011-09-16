@@ -9,8 +9,6 @@ use Message::Stack;
 use MRO::Compat;
 use Scalar::Util 'blessed';
 
-our $VERSION = '0.01';
-
 =head1 DESCRIPTION
 
 This plugin offers persistent messaging (requiring L<Catalyst::Plugin::Session>
