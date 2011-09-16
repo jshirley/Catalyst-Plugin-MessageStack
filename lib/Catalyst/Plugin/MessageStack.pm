@@ -138,10 +138,18 @@ sub message {
     my $default   = $config->{default_type} || 'success';
     my $stash_key = $config->{stash_key} || 'messages';
 
-    if ( $config->{model} ) {
-        $c->stash->{$stash_key} ||= $c->model($config->{model})->messages;
-    } else {
-        $c->stash->{$stash_key} ||= Message::Stack->new;
+    if ( not defined $c->stash->{$stash_key} ) {
+        if ( $config->{model} ) {
+            $c->stash->{$stash_key} = $c->model($config->{model})->messages;
+        } else {
+            $c->stash->{$stash_key} = Message::Stack->new;
+        }
+    }
+    elsif ( not blessed $c->stash->{$stash_key} and
+            not $c->stash->{$stash_key}->isa('Message::Stack') )
+    {
+        $c->log->error("Unable to add messages into the stash, the stash has data at $stash_key already, and it isn't a Message::Stack");
+        return;
     }
     my $stash = $c->stash->{$stash_key};
 

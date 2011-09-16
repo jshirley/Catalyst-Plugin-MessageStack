@@ -1,5 +1,8 @@
 Revision history for Catalyst-Plugin-MessageStack
 
+{{$NEXT}}
+  * Catch when the stash contains a conflict, handle it gracefully with an error.
+
 0.01    Jul 11, 2011
-  - First release with the help of the wonderful Andrew Nelson
+  * First release with the help of the wonderful Andrew Nelson
 
