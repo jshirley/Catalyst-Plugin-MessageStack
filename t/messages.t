@@ -19,7 +19,8 @@ is_deeply($c->message({
     scope => 'some_scope',
     message => 'this is a message',
     type => 'info',
-    subject => 'verb'
+    subject => 'verb',
+    params => ['string_param', 10]
 }), bless({
     messages => [
       bless({
@@ -27,6 +28,7 @@ is_deeply($c->message({
         msgid   => "this is a message",
         scope   => "some_scope",
         subject => "verb",
+        params  => ["string_param", 10],
       }, "Message::Stack::Message"),
    ],
 }, "Message::Stack"), 'One message in the stash');
@@ -44,6 +46,7 @@ is_deeply($c->message({
         msgid   => "this is a message",
         scope   => "some_scope",
         subject => "verb",
+        params  => ["string_param", 10],
       }, "Message::Stack::Message"),
       bless({
         level   => "error",
@@ -67,6 +70,7 @@ is_deeply($c->message($msg), bless({
         msgid   => "this is a message",
         scope   => "some_scope",
         subject => "verb",
+        params  => ["string_param", 10],
       }, "Message::Stack::Message"),
       bless({
         level   => "error",
@@ -87,7 +91,8 @@ my $msg2 = Message::Stack::Message->new({
     scope => 'some_other_scope',
     id => 'this is a fourth message',
     level => 'error',
-    subject => 'verb'
+    subject => 'verb',
+    params => ['some_other_param']
 });
 is_deeply($c->message($msg2), bless({
     messages => [
@@ -96,6 +101,7 @@ is_deeply($c->message($msg2), bless({
         msgid   => "this is a message",
         scope   => "some_scope",
         subject => "verb",
+        params  => ["string_param", 10],
       }, "Message::Stack::Message"),
       bless({
         level   => "error",
@@ -114,6 +120,7 @@ is_deeply($c->message($msg2), bless({
         msgid   => "this is a fourth message",
         scope   => "some_other_scope",
         subject => "verb",
+        params  => ["some_other_param"],
       }, "Message::Stack::Message"),
    ],
 }, "Message::Stack"), 'Four messages in the stash');

@@ -162,6 +162,7 @@ sub message {
             $s->{id}      = $message->{message};
             $s->{scope}   = $message->{scope} || 'global';
             $s->{subject} = $message->{subject} if($message->{subject});
+            $s->{params}  = $message->{params} if($message->{params});
         } else {
             $s->{level}   = $default;
             $s->{id}      = $message;
