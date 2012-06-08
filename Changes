@@ -1,6 +1,8 @@
 Revision history for Catalyst-Plugin-MessageStack
 
 {{$NEXT}}
+
+0.03 Jun 8 2012
   * Fix dropped messages on multiple redirects, thanks to sartak.
     https://github.com/jshirley/Catalyst-Plugin-MessageStack/pull/2
 
