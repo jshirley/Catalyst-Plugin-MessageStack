@@ -71,4 +71,21 @@ sub tweak_config : Local {
     }
 }
 
+sub redirect_source : Local {
+    my $self = shift;
+    my $c = shift;
+
+    $c->message('multiple redirects preserve messages');
+
+    $c->res->redirect($c->uri_for('/redirect_intermediate'));
+}
+
+sub redirect_intermediate : Local {
+    my $self = shift;
+    my $c = shift;
+
+    $c->res->redirect($c->uri_for('/read'));
+}
+
+
 1;

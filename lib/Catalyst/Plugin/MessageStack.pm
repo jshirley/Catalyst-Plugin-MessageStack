@@ -250,8 +250,10 @@ sub dispatch {
 
     if ( $messages->has_messages and $c->response->location) {
         $c->flash->{$flash_key}    = $messages;
+        $c->keep_flash($flash_key);
         if ( $config->{model} ) {
             $c->flash->{$rflash_key} ||= $c->model($config->{model})->results;
+            $c->keep_flash($rflash_key);
         }
     }
     return $ret;
