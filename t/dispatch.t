@@ -67,6 +67,8 @@ SKIP: {
     $c->content_contains('This is a message from a POST with a custom stash_key, flash_key, results_stash_key, and results_flash_key');
  
 
+    $content = $c->get_ok('/redirect_source');
+    $c->content_contains('multiple redirects preserve messages', 'Correct body for GET /read after redirects');
 
    
 }
